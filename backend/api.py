@@ -11,6 +11,7 @@ from threading import Lock
 from typing import Any
 
 from flask import Flask, jsonify, request
+from werkzeug.exceptions import HTTPException
 
 from database import (
     get_daily_summary,
@@ -178,6 +179,17 @@ def serialize_detections(detections: list[dict[str, Any]]) -> list[dict[str, Any
     return serialized
 
 
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify(
+        {
+            "success": True,
+            "message": "SmartAttendance API is running.",
+            "health_endpoint": "/api/health",
+        }
+    )
+
+
 @app.after_request
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
@@ -188,6 +200,8 @@ def add_cors_headers(response):
 
 @app.errorhandler(Exception)
 def handle_unexpected_error(error: Exception):
+    if isinstance(error, HTTPException):
+        return json_error(error.description or error.name, error.code or 500)
     return json_error(str(error), 500)
 
 
