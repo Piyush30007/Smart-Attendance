@@ -5,3 +5,7 @@ dist/
 __pycache__/
 *.pyc
 .env
+dataset/
+encodings/
+*.db
+*.csv
