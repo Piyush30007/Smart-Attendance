@@ -1,0 +1,6 @@
+flask
+flask-cors
+gunicorn
+numpy<2
+opencv-python-headless
+streamlit
