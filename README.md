@@ -9,9 +9,10 @@ This project implements the pipeline:
 - Python
 - OpenCV
 - MTCNN
+-HaarCascade 
 - face_recognition
 - SQLite
-- Streamlit (optional dashboard)
+
 
 ## Project Structure
 
@@ -45,10 +46,10 @@ This will ask for:
 By default, registration is automatic:
 
 - it reads live camera video
-- uses MTCNN face detection on each live frame
+- uses Haar cascade face detection on each live frame
 - samples face crops every few frames
 - averages several samples into one saved image for a cleaner dataset
-- aligns faces using MTCNN eye keypoints before saving
+- aligns faces using Haar Cascade eye keypoints before saving
 
 Controls during registration:
 
@@ -131,8 +132,8 @@ python encode_faces.py
 This will:
 
 - read every student folder in `dataset/`
-- use MTCNN to detect the face region in each image
-- align each face using MTCNN eye keypoints
+- use MTCNN/HaarCascade  to detect the face region in each image
+- align each face using MTCNN/Haar Cascade eye keypoints
 - generate face embeddings
 - save embeddings to `encodings/face_encodings.pkl`
 - register or update student records in SQLite
@@ -158,7 +159,7 @@ python main.py
 This will:
 
 - open the camera
-- detect faces with MTCNN
+- detect faces with MTCNN/HaarCascade 
 - align the detected face before encoding
 - encode faces in real time
 - match them against saved embeddings
