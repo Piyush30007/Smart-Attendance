@@ -1,5 +1,5 @@
 # Smart Attendance System
-
+Live Link - https://smart-attendance-1-4b0q.onrender.com/
 This project implements the pipeline:
 
 `Camera -> Face Detection -> Face Encoding -> Database Matching -> Attendance Log`
